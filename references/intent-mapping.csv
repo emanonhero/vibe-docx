@@ -1,0 +1,25 @@
+user_story,intent_pattern,tool_name,tool_type,description,example_usage,prerequisites,output
+US-001,格式.*乱|修复.*格式|整理.*格式|格式化.*文档|格式.*整理,analyze,validator,分析文档结构和问题,"analyze report.docx",-,DocumentReport
+US-001,标题.*样式|标题.*不一致|标题.*修复|统一.*标题,fix_title_styles,builder,修复标题样式,"fix_title_styles --level 1",begin_session,ChangeReport
+US-001,段落.*格式|段落.*间距|行距.*调整,fix_paragraph_format,builder,修复段落格式,"fix_paragraph_format --line-spacing 1.5",begin_session,ChangeReport
+US-001,列表.*编号|编号.*断|列表.*修复,fix_list_numbering,builder,修复列表编号,"fix_list_numbering",begin_session,ChangeReport
+US-001,页边距|边距.*设置|页边距.*调整,fix_page_setup,builder,设置页边距,"fix_page_setup --top 2.5cm",begin_session,ChangeReport
+US-002,变成.*风格|专业.*报告,apply_style_template,builder,应用风格模板,"apply_style_template business_report",begin_session,ChangeReport
+US-002,风格.*转换|模板.*应用,apply_style_template,builder,应用风格模板,"apply_style_template academic_paper",begin_session,ChangeReport
+US-003,表格.*样式|表格.*整理,unify_table_style,builder,统一表格样式,"unify_table_style",begin_session,ChangeReport
+US-003,表格.*边框|添加.*边框,add_table_borders,builder,添加表格边框,"add_table_borders --style single",begin_session,ChangeReport
+US-004,章节.*大纲|文档.*结构,get_section_outline,validator,获取文档大纲,"get_section_outline",-,OutlineReport
+US-004,拆分.*章节|提取.*章节,extract_section,builder,提取章节为独立文档,"extract_section 第三章",begin_session,FilePath
+US-004,删除.*章节,remove_section,builder,删除章节,"remove_section 附录",begin_session,ChangeReport
+US-004,合并.*章节,merge_sections,builder,合并相邻章节,"merge_sections 第一章 第二章",begin_session,ChangeReport
+US-004,重命名.*章节|章节.*改名,rename_section,builder,重命名章节,"rename_section 旧标题 新标题",begin_session,ChangeReport
+US-005,模板.*应用|按.*模板,apply_style_template,builder,应用风格模板,"apply_style_template business_report",begin_session,ChangeReport
+US-006,合并.*文档|批量.*合并,merge_documents,builder,合并多个文档,"merge_documents doc1.docx doc2.docx",-,FilePath
+US-007,文本框|检测.*文本框,detect_textboxes,validator,检测文档中的文本框,"detect_textboxes",-,TextboxReport
+US-007,简历.*分析|简历.*模板,detect_textboxes,validator,检测简历模板文本框,"detect_textboxes resume.docx",-,TextboxReport
+US-008,提取.*文本框|文本框.*内容,extract_textbox_content,builder,提取文本框内容,"extract_textbox_content --all",begin_session,ChangeReport
+US-008,文本框.*转.*段落,textbox_to_paragraph,builder,将文本框转为段落,"textbox_to_paragraph --all",begin_session,ChangeReport
+US-008,删除.*文本框,remove_textbox,builder,删除文本框,"remove_textbox --indices 0,1",begin_session,ChangeReport
+SESSION,开始.*会话|编辑.*文档,begin_session,builder,开始编辑会话,"begin_session report.docx",-,SessionInfo
+SESSION,提交.*修改|保存.*修改,commit,builder,提交修改,"commit",begin_session,CommitReport
+SESSION,回滚.*修改|撤销.*修改,rollback,builder,回滚修改,"rollback",begin_session,RollbackReport

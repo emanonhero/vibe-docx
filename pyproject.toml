@@ -1,0 +1,77 @@
+[project]
+name = "vibe-docx"
+version = "1.0.0"
+description = "用自然语言操作 Word 文档 - 分析、编辑、转换 DOCX 文档"
+readme = "SKILL.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [
+    {name = "Eamon", email = "emanonhero@example.com"}
+]
+keywords = ["docx", "word", "document", "ai", "llm", "skill"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Office/Business :: Office Suites",
+    "Topic :: Text Processing :: Markup",
+]
+dependencies = [
+    "python-docx>=0.8.11",
+    "lxml>=4.9.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "black>=23.0",
+    "mypy>=1.0",
+    "ruff>=0.1.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/emanonhero/vibe-docx"
+Documentation = "https://github.com/emanonhero/vibe-docx#readme"
+Repository = "https://github.com/emanonhero/vibe-docx"
+Issues = "https://github.com/emanonhero/vibe-docx/issues"
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["vibe_docx*", "scripts*"]
+
+[tool.setuptools.package-data]
+vibe_docx = ["py.typed"]
+scripts = ["py.typed"]
+
+[tool.black]
+line-length = 100
+target-version = ["py310", "py311", "py312", "py313"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "C4"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_ignores = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
