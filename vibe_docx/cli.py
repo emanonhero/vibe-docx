@@ -68,6 +68,7 @@ def _candidate_source_dirs() -> List[Path]:
         candidates.append(Path(env_source))
 
     package_dir = Path(__file__).resolve().parent
+    candidates.append(package_dir / "skill_assets")
     candidates.append(package_dir.parent)
 
     try:
