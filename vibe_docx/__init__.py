@@ -59,6 +59,14 @@ from vibe_docx.models import (
     is_retryable,
 )
 
+# V1.3: TOC 模块
+from vibe_docx.toc import (
+    generate_toc,
+    update_toc,
+    validate_toc_links,
+    TOCError,
+)
+
 __all__ = [
     # 版本
     "__version__",
@@ -102,6 +110,11 @@ __all__ = [
     "image_insert",
     "image_export",
     
+    # V1.3: 目录生成
+    "generate_toc",
+    "update_toc",
+    "validate_toc_links",
+    
     # 新类型
     "Result",
     "Error",
@@ -114,4 +127,5 @@ __all__ = [
     
     # 异常
     "ValidatorError",
+    "TOCError",
 ]
