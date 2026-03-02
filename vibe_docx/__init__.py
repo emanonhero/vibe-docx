@@ -17,7 +17,7 @@ Examples:
     commit(session["session_id"])
 """
 
-__version__ = "1.0.0"
+from vibe_docx.version import __version__
 
 # 从 scripts 导入现有功能（保持向后兼容）
 from scripts.validator import (

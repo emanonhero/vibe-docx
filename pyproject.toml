@@ -40,6 +40,10 @@ Documentation = "https://github.com/emanonhero/vibe-docx#readme"
 Repository = "https://github.com/emanonhero/vibe-docx"
 Issues = "https://github.com/emanonhero/vibe-docx/issues"
 
+[project.scripts]
+vibe-docx-skill = "vibe_docx.cli:skill_cli_main"
+vibe-docx-version = "vibe_docx.cli:version_cli_main"
+
 [build-system]
 requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
@@ -51,6 +55,9 @@ include = ["vibe_docx*", "scripts*"]
 [tool.setuptools.package-data]
 vibe_docx = ["py.typed"]
 scripts = ["py.typed"]
+
+[tool.setuptools]
+include-package-data = true
 
 [tool.black]
 line-length = 100
