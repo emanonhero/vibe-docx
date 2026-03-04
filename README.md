@@ -78,9 +78,13 @@ vibe_docx.commit(session["session_id"])  # 或 rollback() 回滚
 | `commit(session_id)` | 提交修改 |
 | `rollback(session_id)` | 回滚到原始文件 |
 | `fix_formatting(session_id, options)` | 修复字体、行距、空段落 |
-| `fix_page_setup(session_id, margins)` | 页边距、纸张方向 |
-| `fix_table_borders(session_id)` | 添加表格边框 |
 | `apply_style_template(session_id, template)` | 应用预置模板 |
+| `table_read(session_id, table_index)` | 读取表格内容 |
+| `table_update(session_id, table_index, cells)` | 更新表格单元格 |
+| `replace_text(session_id, paragraph_index, text)` | 替换段落文本 |
+| `delete_paragraphs(session_id, start, end)` | 删除段落范围 |
+
+> 内容操作（表格/段落）需导入完整 API，详见 [examples.md](references/examples.md)
 
 ### 预置模板
 
@@ -146,27 +150,69 @@ vibe_docx.apply_style_template(session_id, "business_report")
 vibe_docx.merge_documents(["part1.docx", "part2.docx"], "merged.docx")
 ```
 
-## 作为 Claude Skill 使用
+## 作为 Claude/iFlow Skill 使用
 
-vibe-docx 包含 SKILL.md，可直接作为 Claude/iFlow 的 skill 使用：
+vibe-docx 包含 SKILL.md，可直接作为 Claude/iFlow 等 LLM 工具的 skill 使用：
 
+### 安装方式
+
+**方式一：命令行安装（推荐）**
+```bash
+# pip 安装后，使用全局命令
+pip install vibe-docx
+vibe-docx-skill --target local --tools iflow
+
+# 或从源码安装
+python scripts/install_skill.py --target local --tools iflow
 ```
-# 安装 skill
+
+**方式二：手动复制**
+```bash
 cp -r vibe-docx ~/.iflow/skills/
-
-# Claude 自动识别
-用户: 帮我修复 report.docx 的格式
-Claude: [触发 vibe-docx skill] 正在分析文档...
 ```
+
+### 支持的工具
+
+| 工具 | 命令 | 说明 |
+|------|------|------|
+| iflow | `--tools iflow` | iFlow CLI |
+| cursor | `--tools cursor` | Cursor IDE |
+| claude | `--tools claude` | Claude Code |
+| cline | `--tools cline` | Cline VS Code |
+| copilot | `--tools copilot` | GitHub Copilot |
+| windsurf | `--tools windsurf` | Windsurf IDE |
+
+```bash
+# 查看所有支持的工具
+vibe-docx-skill --list-tools
+
+# 安装到多个工具
+vibe-docx-skill --target local --tools iflow,cursor,claude
+
+# 验证安装
+vibe-docx-skill --verify --tools iflow
+```
+
+### 触发方式
+
+安装后，LLM 自动识别以下场景：
+
+| 用户输入 | 触发工作流 |
+|---------|-----------|
+| "修复格式"、"整理格式" | format-fix |
+| "修改表格"、"替换文本" | content-edit |
+| "变成商务报告风格" | style-convert |
+| "分析文档问题" | analyze |
 
 ## API 参考
 
-完整 API 文档见 [references/api.md](references/api.md)
-
-- [工作流定义](references/workflows.md)
-- [模板配置](references/templates.md)
-- [意图映射](references/intent-mapping.csv)
-- [V1.2 技术规格](references/tech-spec-v1.2.md)
+| 文档 | 内容 |
+|------|------|
+| [examples.md](references/examples.md) | 完整代码示例 |
+| [api.md](references/api.md) | API 参数详解 |
+| [workflows.md](references/workflows.md) | 工作流定义 |
+| [templates.md](references/templates.md) | 模板配置 |
+| [intent-mapping.csv](references/intent-mapping.csv) | 意图映射 |
 
 ## 依赖
 

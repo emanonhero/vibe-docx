@@ -24,6 +24,8 @@
 
 开始编辑会话，创建备份。
 
+**适用场景：** 所有修改操作的第一步。格式修复、内容编辑、风格转换都需要先创建会话。
+
 **参数：**
 - `file_path` (str, 必填): DOCX 文件路径
 - `backup` (bool, 可选): 是否创建备份，默认 True
@@ -76,6 +78,8 @@
 ### analyze(file_path, focus_areas=None)
 
 全面分析 DOCX 文档结构和问题。
+
+**适用场景：** 文档诊断第一步。检测格式问题、结构问题、内容问题。修复前建议先分析。
 
 **参数：**
 - `file_path` (str, 必填): DOCX 文件路径
@@ -184,6 +188,8 @@ XML 直接验证（底层）。
 
 修复格式问题。
 
+**适用场景：** 文档格式混乱，需要统一字体、行距、清理空段落。
+
 **参数：**
 - `session_id` (str, 必填): 会话 ID
 - `options` (dict, 可选): 修复选项
@@ -279,6 +285,8 @@ XML 直接验证（底层）。
 
 列出文档中的所有表格。
 
+**适用场景：** 修改表格前先查看表格数量和结构。
+
 **返回：**
 ```python
 {
@@ -293,6 +301,8 @@ XML 直接验证（底层）。
 ### table_read(session_id, table_index)
 
 读取表格内容为二维数组。
+
+**适用场景：** 修改表格前查看当前内容，定位需要更新的单元格。
 
 **参数：**
 - `session_id` (str, 必填): 会话 ID
@@ -312,6 +322,8 @@ XML 直接验证（底层）。
 ### table_update(session_id, table_index, cells)
 
 更新表格单元格。
+
+**适用场景：** 修改表格数据，如更新个人信息表、修改数据表格。
 
 **参数：**
 - `session_id` (str, 必填): 会话 ID
@@ -425,6 +437,8 @@ XML 直接验证（底层）。
 
 读取指定章节的内容。
 
+**适用场景：** 查看章节内容，确认要修改的位置。
+
 **返回：**
 ```python
 {
@@ -444,6 +458,8 @@ XML 直接验证（底层）。
 ### replace_text(session_id, paragraph_index, content)
 
 替换指定位置的文本。
+
+**适用场景：** 替换段落内容，如更新合同条款、修改报告段落。
 
 ### splice_section(session_id, section_title, content, preserve_images=True)
 
@@ -520,6 +536,8 @@ XML 直接验证（底层）。
 
 获取模板配置。
 
+**适用场景：** 查看预置模板的具体配置，决定是否使用或自定义覆盖。
+
 **可用模板：**
 - `business_report` - 商务报告
 - `internal_simple` - 简洁风格
@@ -577,6 +595,8 @@ XML 直接验证（底层）。
 ### delete_paragraphs(session_id, start_index, end_index, options)
 
 安全删除段落范围，保护 section 结构。
+
+**适用场景：** 删除多余段落，如删除废弃章节、移除空白段落。
 
 **参数：**
 - `session_id` (str, 必填): 会话 ID
