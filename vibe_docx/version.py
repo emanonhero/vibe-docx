@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 """vibe-docx 版本信息"""
 
-__version__ = "1.3.1"
+__version__ = "1.4.0"
 __author__ = "Eamon"
 __license__ = "MIT"
 
 # 版本历史
+# 1.4.0 - Progressive Disclosure 架构, examples.md, 内容编辑工作流, 自发现机制
 # 1.3.1 - 增加全局 CLI 命令与版本查询命令
 # 1.3.0 - 添加 TOC 生成与更新 (US-014), SKILL 安装脚本 (US-015)
 # 1.2.0 - 添加 Section 保护、精确插入、图片定位、格式匹配
